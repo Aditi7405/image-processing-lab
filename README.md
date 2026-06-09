@@ -19,3 +19,10 @@
 10. Sine and Cosine Transform-Based Image Compression
 
 11. JPEG Image Compression Technique
+
+
+<!-- experiment Folder name structure-->
+
+#example for first (Sampling and Quantization) experiment
+    exp-1-sampling
+
