@@ -814,7 +814,7 @@
         <span>></span>
         <a href="#" class="hover:text-blue-600">Image Processing Lab</a>
         <span>></span>
-                <a href="#" class="hover:text-blue-600">Derivative-Based Edge Detection</a>
+                <a href="#" class="hover:text-blue-600">Morphology Based Edge Detection</a>
         <span>></span>
         <span class="text-gray-800 font-medium">Procedure</span>
       </nav>
@@ -823,107 +823,80 @@
       <div class="vl-card mb-4 overflow-hidden animate-fadeInUp rounded-lg">
        <div class="px-4 py-3" style="background: linear-gradient(120deg, #021a2c, #064073, #0b60a8);">
           <h1 class="text-lg md:text-xl font-bold text-white text-center leading-snug">
-            Derivative-Based Edge Detection
+            Morphology Based Edge Detection
           </h1>
         </div>
       </div>
 
  <!-- Procedure Steps -->
-<section class="section-content vl-card animate-fadeInUp procedure-content">
+<!-- Procedure Steps -->
+<section class="section-content vl-card p-4 animate-fadeInUp procedure-content">
 
-  <style>
-    .section-content {
-      width: 100%;
-      max-width: none;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
+  <div class="procedure-body text-gray-700 text-base sm:text-lg leading-relaxed">
 
-    .procedure-content {
-      width: 100%;
-      max-width: none;
-      margin: 0 !important;
-      padding: 0 !important;
-      line-height: 1.8;
-      text-align: justify;
-    }
+    <style>
+      .content{
+        width:100%;
+        max-width:none;
+        margin:0 !important;
+        padding:0 !important;
+        line-height:1.8;
+        text-align:justify;
+      }
 
-    .procedure-section {
-      width: 100%;
-      max-width: none;
-      margin: 0 !important;
-      padding: 0 15px !important;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #222;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      text-align: justify;
-    }
+      .content h2{
+        font-size:2rem;
+        font-weight:700;
+        color:#222;
+        margin:0 0 12px 0 !important;
+        padding:0 !important;
+        text-align:left;
+      }
 
-    .procedure-section h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #222;
-      margin: 0 0 12px 0 !important;
-      padding: 0 !important;
-      text-align: left;
-      border: none;
-    }
+      .content h3{
+        font-size:1.4rem;
+        font-weight:700;
+        color:#222;
+        margin-top:20px;
+        margin-bottom:12px;
+      }
 
-    .procedure-section h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #222;
-      margin-top: 20px;
-      margin-bottom: 12px;
-      text-align: left;
-    }
+      .content p{
+        font-size:1.1rem;
+        margin-bottom:10px;
+        line-height:1.8;
+        color:#000;
+      }
 
-    .procedure-section ol {
-      list-style: decimal !important;
-      list-style-position: outside !important;
-      padding-left: 40px !important;
-      margin: 12px 0 20px 0 !important;
-      text-align: justify;
-    }
+      .content b{
+        font-weight:700;
+        color:#000;
+      }
+    </style>
 
-    .procedure-section li {
-      display: list-item !important;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      line-height: 1.8;
-      color: #000;
-      text-align: justify;
-      padding-left: 0 !important;
-    }
+    <div class="content">
 
-    .procedure-section b {
-      font-weight: 700;
-      color: #000;
-    }
-  </style>
+      <h2>Procedure</h2>
 
- <section class="procedure-section">
+      <h3>For Morphology Based Edge Detection</h3>
 
-    <h2>Procedure</h2>
+      <p><b>Step 1:</b> Select a binary image from the available options such as <b>Plus</b>, <b>Minus</b>, <b>Multiply</b>, or <b>Divide</b>.</p>
 
-    <h3>For Derivative Based Edge Detection</h3>
+      <p><b>Step 2:</b> Choose the required morphological operation such as <b>Erosion</b>, <b>Dilation</b>, <b>Opening</b>, or <b>Closing</b>.</p>
 
-    <p><b>Step 1:</b> Select an image from the available sample images or upload your own image using the <b>Upload File</b> button.</p>
+      <p><b>Step 3:</b> Select the required structuring element or kernel.</p>
 
-    <p><b>Step 2:</b> Choose the desired <b>Derivative Order</b> from the available options.</p>
+      <p><b>Step 4:</b> Click on the <b>Process</b> button to perform the selected morphological operation.</p>
 
-    <p><b>Step 3:</b> If <b>First Order Derivative</b> is selected, choose the required filter such as <b>Sobel</b>, <b>Prewitt</b>, or <b>Robert</b>.</p>
+      <p><b>Step 5:</b> Observe the processed output image displayed on the output screen.</p>
 
-    <p><b>Step 4:</b> If <b>Second Order Derivative</b> is selected, select the required kernel size.</p>
+      <p><b>Step 6:</b> Compare the input and output images to understand the effect of the selected operation.</p>
 
-    <p><b>Step 5:</b> After selecting all required parameters, click on the <b>Process</b> button.</p>
+      <p><b>Step 7:</b> Click on the <b>Print</b> button to print or save the result.</p>
 
-    <p><b>Step 6:</b> The processed edge-detected image will be displayed on the output screen.</p>
+    </div>
 
-    <p><b>Step 7:</b> Click on the <b>Print</b> button to print or save the result.</p>
-
-</section>
+  </div>
 
 </section>
 </section>

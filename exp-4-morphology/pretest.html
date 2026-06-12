@@ -825,7 +825,7 @@
         <span>></span>
         <a href="#" class="hover:text-blue-600">Image Processing Lab</a>
         <span>></span>
-        <a href="#" class="hover:text-blue-600">Derivative-Based Edge Detection</a>
+        <a href="#" class="hover:text-blue-600">Morphology Based Edge Detection/a>
         <span>></span>
         <span class="text-gray-800 font-medium">Pretest</span>
       </nav>
@@ -834,7 +834,7 @@
       <div class="vl-card mb-4 overflow-hidden animate-fadeInUp rounded-lg">
         <div class="px-4 py-3" style="background: linear-gradient(120deg, #021a2c, #064073, #0b60a8);">
           <h1 class="text-lg md:text-xl font-bold text-white text-center leading-snug">
-            Derivative-Based Edge Detection
+            Morphology Based Edge Detection
           </h1>
         </div>
       </div>
@@ -912,484 +912,47 @@
 <script>
 /* ------------------ 20 QUESTIONS ------------------ */
 const questions = [
-  {
-    id: 1,
-    text: 'What is the primary purpose of image segmentation in image processing?',
-    choices: [
-      'A) Compress an image to reduce file size',
-      'B) Divide an image into regions corresponding to different objects or parts of objects',
-      'C) Enhance the overall brightness and contrast of an image',
-      'D) Convert a colour image to a binary black-and-white image'
-    ],
-    answer: 'B',
-    selected: null
-  },
 
-  {
-    id: 2,
-    text: 'In image processing, the gradient ∇f(x,y) is defined as:',
-    choices: [
-      'A) A scalar representing average pixel intensity across the image',
-      'B) A vector pointing in the direction of the greatest rate of increase of intensity',
-      'C) The second-order partial derivative of the image function',
-      'D) The discrete Fourier transform of the image'
-    ],
-    answer: 'B',
-    selected: null
-  },
+{id:1,text:'In binary image processing, which pixel value typically represents the foreground object?',choices:['A) 0','B) 128','C) 1','D) 255'],answer:'C',selected:null},
 
-  {
-    id: 3,
-    text: 'The gradient magnitude |∇f(x,y)| is correctly computed as:',
-    choices: [
-      `A)
-      <span class="math-choice">
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂x</span>
-        </span>
-        <span>+</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂y</span>
-        </span>
-      </span>`,
+{id:2,text:'What does the background of a standard binary image represent?',choices:['A) Pixel value = 1','B) Pixel value = 0','C) Pixel value = 128','D) Any non-zero value'],answer:'B',selected:null},
 
-      `B)
-      <span class="math-choice">
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂x</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-        <span>×</span>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂y</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-      </span>`,
+{id:3,text:'Which of the following best defines a structuring element in morphological operations?',choices:['A) A filter applied to reduce image noise using Gaussian smoothing','B) A small binary kernel used to probe the shape of objects in an image','C) A matrix that stores the histogram of pixel intensities','D) A lookup table for color space conversion'],answer:'B',selected:null},
 
-      `C)
-      <span class="math-choice">
-        <span class="q-sqrt">
-          <span class="q-sqrt-symbol">√</span>
-          <span class="q-sqrt-content">
-            <span class="q-big-bracket">(</span>
-            <span class="q-frac">
-              <span class="num">∂f</span>
-              <span class="den">∂x</span>
-            </span>
-            <span>)<sup>2</sup></span>
-            <span>+</span>
-            <span class="q-big-bracket">(</span>
-            <span class="q-frac">
-              <span class="num">∂f</span>
-              <span class="den">∂y</span>
-            </span>
-            <span>)<sup>2</sup></span>
-            <span class="q-big-bracket">)</span>
-          </span>
-        </span>
-      </span>`,
+{id:4,text:'Which two operations are considered the fundamental building blocks of morphological image processing?',choices:['A) Convolution and Correlation','B) Opening and Closing','C) Erosion and Dilation','D) Blurring and Sharpening'],answer:'C',selected:null},
 
-      `D)
-      <span class="math-choice">
-        <span class="q-frac">
-          <span class="num">∂<sup>2</sup>f</span>
-          <span class="den">∂x<sup>2</sup></span>
-        </span>
-        <span>+</span>
-        <span class="q-frac">
-          <span class="num">∂<sup>2</sup>f</span>
-          <span class="den">∂y<sup>2</sup></span>
-        </span>
-      </span>`
-    ],
-    answer: 'C',
-    selected: null
-  },
+{id:5,text:'During the erosion operation, the output pixel is set to 1 only when:',choices:['A) At least one pixel under the kernel matches a foreground pixel','B) All pixels under the kernel in the input image are 1','C) The kernel center pixel equals 1','D) Fewer than half the kernel pixels overlap with the foreground'],answer:'B',selected:null},
 
-  {
-    id: 4,
-    text: 'The direction (angle) of the gradient θ(x,y) is given by:',
-    choices: [
-      `A)
-      <span class="math-choice">
-        tan<sup>-1</sup>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f/∂x</span>
-          <span class="den">∂f/∂y</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-      </span>`,
+{id:6,text:'What is the primary effect of applying erosion to a binary image?',choices:['A) The foreground region expands outward','B) Small holes inside objects are filled','C) Boundaries of white (foreground) regions are removed, shrinking the object','D) The image contrast is enhanced'],answer:'C',selected:null},
 
-      `B)
-      <span class="math-choice">
-        sin<sup>-1</sup>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f/∂y</span>
-          <span class="den">∂f/∂x</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-      </span>`,
+{id:7,text:'During dilation, the output pixel is set to 1 when:',choices:['A) All pixels under the kernel are 1','B) At least one pixel under the kernel in the input image is 1','C) No pixel under the kernel is 1','D) The kernel center is perfectly aligned with a background pixel'],answer:'B',selected:null},
 
-      `C)
-      <span class="math-choice">
-        tan<sup>-1</sup>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f/∂y</span>
-          <span class="den">∂f/∂x</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-      </span>`,
+{id:8,text:'Which morphological operation is analogous to the natural process of soil erosion, gradually wearing away the boundaries of objects?',choices:['A) Dilation','B) Opening','C) Closing','D) Erosion'],answer:'D',selected:null},
 
-      `D)
-      <span class="math-choice">
-        cos<sup>-1</sup>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f/∂x</span>
-          <span class="den">∂f/∂y</span>
-        </span>
-        <span class="q-big-bracket">)</span>
-      </span>`
-    ],
-    answer: 'C',
-    selected: null
-  },
+{id:9,text:'What is the correct sequence of operations that defines morphological Opening?',choices:['A) Dilation followed by Erosion','B) Erosion followed by Dilation','C) Two consecutive Erosions','D) Two consecutive Dilations'],answer:'B',selected:null},
 
-  {
-    id: 5,
-    text: 'Which of the following is NOT one of the standard steps in edge detection?',
-    choices: ['A) Filtering', 'B) Enhancement', 'C) Compression', 'D) Detection'],
-    answer: 'C',
-    selected: null
-  },
+{id:10,text:'What is the correct sequence of operations that defines morphological Closing?',choices:['A) Erosion followed by Dilation','B) Two consecutive Erosions','C) Dilation followed by Erosion','D) Erosion followed by another Erosion'],answer:'C',selected:null},
 
-  {
-    id: 6,
-    text: 'The Filtering step in edge detection is primarily used to:',
-    choices: [
-      'A) Detect zero-crossings of the second derivative',
-      'B) Improve edge detector performance with respect to noise',
-      'C) Compute gradient magnitude for all pixels',
-      'D) Locate edges with sub-pixel accuracy'
-    ],
-    answer: 'B',
-    selected: null
-  },
+{id:11,text:'Opening is primarily used to:',choices:['A) Fill small holes or gaps in foreground objects','B) Remove small white noise or objects while preserving larger shapes','C) Expand the boundaries of all objects','D) Convert a grayscale image to binary'],answer:'B',selected:null},
 
-  {
-    id: 7,
-    text: 'The Roberts cross operator computes the gradient about:',
-    choices: [
-      'A) The exact pixel location [i, j]',
-      'B) The centre of a 3×3 neighbourhood',
-      'C) An interpolated point [i + 1/2, j + 1/2]',
-      'D) The four corner pixels of the image'
-    ],
-    answer: 'C',
-    selected: null
-  },
+{id:12,text:'Closing is primarily useful for:',choices:['A) Removing large white objects from an image','B) Sharpening edges','C) Filling small holes or gaps inside foreground objects','D) Separating connected components'],answer:'C',selected:null},
 
-  {
-    id: 8,
-    text: 'The kernel size used in the Roberts cross operator is:',
-    choices: ['A) 1×2', 'B) 3×3', 'C) 5×5', 'D) 2×2'],
-    answer: 'D',
-    selected: null
-  },
+{id:13,text:'In morphological operations, the kernel is moved over the image in a manner similar to which other image processing technique?',choices:['A) Histogram equalization','B) 2D convolution','C) Fourier transform','D) Median filtering'],answer:'B',selected:null},
 
-  {
-    id: 9,
-    text: 'The Sobel kernel Sx (detecting horizontal intensity changes) is:',
-    choices: [
-      `A)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-          <tr><td>-2</td><td>0</td><td>2</td></tr>
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:14,text:'Which of the following is NOT a typical effect of dilation?',choices:['A) Filling small holes in objects','B) Connecting disjoint parts of an object','C) Reducing the size of foreground objects','D) Expanding object boundaries'],answer:'C',selected:null},
 
-      `B)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>-1</td><td>-2</td><td>-1</td></tr>
-          <tr><td>0</td><td>0</td><td>0</td></tr>
-          <tr><td>1</td><td>2</td><td>1</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:15,text:'The size of the structuring element (kernel) primarily controls:',choices:['A) The color depth of the output image','B) The extent or degree to which the morphological operation affects the image','C) The number of color channels in the output','D) The histogram shape of the processed image'],answer:'B',selected:null},
 
-      `C)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>1</td><td>0</td><td>-1</td></tr>
-          <tr><td>1</td><td>0</td><td>-1</td></tr>
-          <tr><td>1</td><td>0</td><td>-1</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:16,text:'The mathematical notation for the dilation of image A by structuring element B is commonly written as:',choices:['A) A ⊖ B','B) A ○ B','C) A ● B','D) A ⊕ B'],answer:'D',selected:null},
 
-      `D)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>0</td><td>1</td><td>0</td></tr>
-          <tr><td>1</td><td>-4</td><td>1</td></tr>
-          <tr><td>0</td><td>1</td><td>0</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`
-    ],
-    answer: 'A',
-    selected: null
-  },
+{id:17,text:'The mathematical notation for the erosion of image A by structuring element B is commonly written as:',choices:['A) A ⊕ B','B) A ⊖ B','C) A ○ B','D) A ● B'],answer:'B',selected:null},
 
-  {
-    id: 10,
-    text: 'The Prewitt kernel Sx for detecting horizontal intensity changes is:',
-    choices: [
-      `A)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-          <tr><td>-2</td><td>0</td><td>2</td></tr>
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:18,text:'Which morphological operation is most suitable as a preprocessing step to remove salt-and-pepper noise (isolated white dots) from a binary image?',choices:['A) Dilation','B) Closing','C) Opening','D) Gradient'],answer:'C',selected:null},
 
-      `B)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-          <tr><td>-1</td><td>0</td><td>1</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:19,text:'How can morphological operations be used for edge detection?',choices:['A) By applying a Gaussian blur followed by thresholding','B) By subtracting the eroded image from the original (or dilated) image to highlight boundaries','C) By converting the image to the frequency domain','D) By averaging neighboring pixel values'],answer:'B',selected:null},
 
-      `C)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>-3</td><td>0</td><td>3</td></tr>
-          <tr><td>-10</td><td>0</td><td>10</td></tr>
-          <tr><td>-3</td><td>0</td><td>3</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`,
+{id:20,text:'Which of the following best describes the role of the kernel shape in morphological operations?',choices:['A) It determines the file format of the output image','B) It defines which neighboring pixels are considered during each operation','C) It sets the brightness of the output image','D) It specifies the number of iterations applied'],answer:'B',selected:null}
 
-      `D)
-      <div class="matrix-option-wrap">
-        <span class="matrix-bracket">[</span>
-        <table class="matrix-table">
-          <tr><td>0</td><td>1</td><td>0</td></tr>
-          <tr><td>1</td><td>-4</td><td>1</td></tr>
-          <tr><td>0</td><td>1</td><td>0</td></tr>
-        </table>
-        <span class="matrix-bracket">]</span>
-      </div>`
-    ],
-    answer: 'B',
-    selected: null
-  },
-
-  {
-    id: 11,
-    text: 'The Laplacian operator belongs to which category of edge detectors?',
-    choices: [
-      'A) First-order derivative',
-      'B) Morphological operators',
-      'C) Second-order derivative',
-      'D) Frequency-domain operators'
-    ],
-    answer: 'C',
-    selected: null
-  },
-
-  {
-    id: 12,
-    text: 'The mathematical formula for the Laplacian ∇²f(x,y) is:',
-    choices: [
-      `A)
-      <span class="math-choice">
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂x</span>
-        </span>
-        <span>+</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂y</span>
-        </span>
-      </span>`,
-
-      `B)
-      <span class="math-choice">
-        <span class="q-sqrt">
-          <span class="q-sqrt-symbol">√</span>
-          <span class="q-sqrt-content">
-            <span class="q-frac">
-              <span class="num">∂<sup>2</sup>f</span>
-              <span class="den">∂x<sup>2</sup></span>
-            </span>
-            <span>+</span>
-            <span class="q-frac">
-              <span class="num">∂<sup>2</sup>f</span>
-              <span class="den">∂y<sup>2</sup></span>
-            </span>
-          </span>
-        </span>
-      </span>`,
-
-      `C)
-      <span class="math-choice">
-        <span class="q-frac">
-          <span class="num">∂<sup>2</sup>f</span>
-          <span class="den">∂x<sup>2</sup></span>
-        </span>
-        <span>+</span>
-        <span class="q-frac">
-          <span class="num">∂<sup>2</sup>f</span>
-          <span class="den">∂y<sup>2</sup></span>
-        </span>
-      </span>`,
-
-      `D)
-      <span class="math-choice">
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂x</span>
-        </span>
-        <span>)<sup>2</sup></span>
-        <span>+</span>
-        <span class="q-big-bracket">(</span>
-        <span class="q-frac">
-          <span class="num">∂f</span>
-          <span class="den">∂y</span>
-        </span>
-        <span>)<sup>2</sup></span>
-      </span>`
-    ],
-    answer: 'C',
-    selected: null
-  },
-
-  {
-    id: 13,
-    text: 'Second-order derivative edge operators detect edge points by identifying:',
-    choices: [
-      'A) Local maxima in gradient magnitude only',
-      'B) Zero crossings of the second derivative',
-      'C) Regions with intensity above a fixed global threshold',
-      'D) The direction of minimum intensity change'
-    ],
-    answer: 'B',
-    selected: null
-  },
-
-  {
-    id: 14,
-    text: 'The Enhancement step in edge detection emphasises:',
-    choices: [
-      'A) Pixels in low-frequency background regions',
-      'B) Pixels where there is a significant change in local intensity values via gradient magnitude',
-      'C) Pixels with the highest absolute intensity in the image',
-      'D) Pixels that lie on straight lines only'
-    ],
-    answer: 'B',
-    selected: null
-  },
-
-  {
-    id: 15,
-    text: 'A good image segmentation requires that pixels in the same category:',
-    choices: [
-      'A) Have widely different grey-scale values',
-      'B) Are spatially disconnected from each other',
-      'C) Have similar grey-scale values and form a connected region',
-      'D) Be located only at image boundaries'
-    ],
-    answer: 'C',
-    selected: null
-  },
-
-  {
-    id: 16,
-    text: 'Which edge detection operator places the greatest emphasis on pixels closest to the centre of the mask?',
-    choices: ['A) Roberts', 'B) Prewitt', 'C) Laplacian', 'D) Sobel'],
-    answer: 'D',
-    selected: null
-  },
-
-  {
-    id: 17,
-    text: 'The trade-off present in the Filtering step of edge detection is between:',
-    choices: [
-      'A) Spatial resolution and colour depth',
-      'B) Edge strength and noise reduction',
-      'C) Processing speed and memory usage',
-      'D) Image file size and visual quality'
-    ],
-    answer: 'B',
-    selected: null
-  },
-
-  {
-    id: 18,
-    text: 'What is the Localization step in edge detection concerned with?',
-    choices: [
-      'A) Applying gradient magnitude thresholds',
-      'B) Computing the second derivative of the image',
-      'C) Estimating edge location with sub-pixel resolution and determining edge orientation',
-      'D) Smoothing the image prior to gradient computation'
-    ],
-    answer: 'C',
-    selected: null
-  },
-
-  {
-    id: 19,
-    text: 'Kernel X (Sx) in first-order derivative operators primarily detects intensity changes in which direction?',
-    choices: [
-      'A) Vertical direction (y-axis)',
-      'B) Diagonal direction (45°)',
-      'C) Circular (radial) direction',
-      'D) Horizontal direction (x-axis)'
-    ],
-    answer: 'D',
-    selected: null
-  },
-
-  {
-    id: 20,
-    text: 'Edge detection helps reduce image complexity primarily because it:',
-    choices: [
-      'A) Increases image resolution and pixel density',
-      'B) Preserves all original colour information intact',
-      'C) Removes unwanted and unnecessary information, making the image easier to analyse',
-      'D) Applies lossless compression to all pixel values'
-    ],
-    answer: 'C',
-    selected: null
-  }
 ];
 
 /* ------------------ SETTINGS ------------------ */

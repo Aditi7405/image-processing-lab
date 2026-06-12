@@ -727,7 +727,7 @@
         <span>></span>
           <a href="#" class="hover:text-blue-600">Image Processing Lab</a>
           <span>></span>
-          <a href="#" class="hover:text-blue-600"> Derivative-Based Edge Detection</a>
+          <a href="#" class="hover:text-blue-600"> Morphology Based Edge Detection</a>
           <span>></span>
         <span class="text-gray-800 font-medium">Posttest</span>
       </nav>
@@ -735,7 +735,7 @@
       <div class="vl-card mb-4 overflow-hidden animate-fadeInUp rounded-lg">
         <div class="px-4 py-3" style="background: linear-gradient(120deg, #021a2c, #064073, #0b60a8);">
           <h1 class="text-lg md:text-xl font-bold text-white text-center leading-snug">
-            Derivative-Based Edge Detection
+            Morphology Based Edge Detection
           </h1>
         </div>
       </div>
@@ -814,39 +814,47 @@
 <script>
 /* ------------------ 20 QUESTIONS ------------------ */
 const questions = [
-  {id:1,text:'When a 3×3 Sobel kernel is applied via valid convolution (no padding) to a 7×7 binary image, the resulting gradient matrix dimensions are:',choices:['A) 7×7','B) 5×5','C) 6×6','D) 4×4'],answer:'B',selected:null},
 
-  {id:2,text:'If ΔX = 3 and ΔY = 4 at a pixel, the resultant gradient magnitude ΔG = √(ΔX² + ΔY²) equals:',choices:['A) 7','B) 3.5','C) 12','D) 5'],answer:'D',selected:null},
+{id:1,text:'In the simulation, when the kernel is positioned at a pixel during dilation and the explanation reads "Hit — Output = 1", what condition was satisfied?',choices:['A) All kernel positions overlapped with background pixels','B) At least one foreground pixel value 1 was found under a kernel element marked 1','C) The center pixel of the kernel was exactly 0','D) No foreground pixel was found under the kernel'],answer:'B',selected:null},
 
-  {id:3,text:'In the simulation, the normalisation formula applied to generate the resultant edge image pixel value is:',choices:['A) ΔG × 255 / MaxValue','B) ΔG / (MaxValue × 255)','C) ΔG + 255','D) ΔG × MaxValue / 255'],answer:'B',selected:null},
+{id:2,text:'During the erosion animation, the explanation shows "Miss — Output = 0" at a certain pixel. What does this mean?',choices:['A) The kernel found at least one foreground pixel in its neighborhood','B) The kernel successfully fit entirely within the foreground','C) At least one position required by the kernel contained a background pixel 0, so the kernel did not fit','D) The current pixel was outside the padded boundary'],answer:'C',selected:null},
 
-  {id:4,text:'When the Roberts (2×2) kernel is applied to the 7×7 input image with valid convolution, the resulting gradient matrix size is:',choices:['A) 5×5','B) 7×7','C) 6×6','D) 4×4'],answer:'C',selected:null},
+{id:3,text:'After applying dilation using a 3×3 structuring element to a 5×5 white square, why does the white square become thicker and larger?',choices:['A) Dilation sets output pixels to 1 whenever the kernel overlaps any foreground pixel, causing the white region to expand outward','B) Dilation removes black pixels from the image completely','C) Dilation inverts foreground and background regions','D) Dilation applies Gaussian smoothing before thresholding'],answer:'A',selected:null},
 
-  {id:5,text:'How many element-wise multiplications are performed for each pixel window position during convolution with a 3×3 kernel?',choices:['A) 3','B) 6','C) 9','D) 12'],answer:'C',selected:null},
+{id:4,text:'After applying erosion using a 3×3 structuring element to a 7×7 white square, why does the white region shrink?',choices:['A) Erosion converts all boundary pixels to 1','B) Erosion sets a pixel to 1 only when the structuring element fits completely inside the foreground region; boundary pixels that fail this condition become 0','C) Erosion doubles the size of the black region by adding additional padding','D) Erosion replaces all foreground pixels with the value of the center pixel'],answer:'B',selected:null},
 
-  {id:6,text:'In the simulation, when both ΔX and ΔY values at a particular pixel position are zero, this indicates:',choices:['A) The pixel lies on a strong edge boundary','B) The simulation has not yet reached that pixel position','C) The pixel is in a uniform/flat region with no intensity change','D) The kernel weights have been applied incorrectly'],answer:'C',selected:null},
+{id:5,text:'During Opening, after erosion followed by dilation, what happens to isolated single-pixel white noise points around a large white object?',choices:['A) The object becomes larger than the original','B) The object returns approximately to its original shape while most isolated noise pixels disappear','C) The image becomes completely black','D) The object doubles in size in all directions'],answer:'B',selected:null},
 
-  {id:7,text:'The Laplacian operator uses an identical matrix for both Kernel X and Kernel Y in the simulation. The mathematical reason is:',choices:['A) The Laplacian is an isotropic second-order operator (∂²f/∂x² + ∂²f/∂y²) that treats all directions equally','B) It is a programming simplification with no rigorous mathematical basis','C) The Laplacian only operates in the horizontal direction','D) Both kernels cancel each other out in the final gradient computation'],answer:'A',selected:null},
+{id:6,text:'If you apply Closing to a binary image with a small hole inside a white object, what would you observe?',choices:['A) The hole grows larger','B) The hole disappears because dilation fills it, and subsequent erosion restores the outer boundary','C) The entire object is removed','D) The hole is converted to a bright white spot'],answer:'B',selected:null},
 
-  {id:8,text:'After running the simulation with the Multiply (×) sign image and Sobel operator, where would the highest ΔG values be expected?',choices:['A) At the exact centre pixel of the 7×7 image','B) Along the diagonal edges of the X-shaped pattern','C) Uniformly distributed across all positions in the result matrix','D) Only at the four corners of the 7×7 grid'],answer:'B',selected:null},
+{id:7,text:'The simulation uses a 9×9 padded grid for a 7×7 input image. What is the purpose of this padding?',choices:['A) To increase image resolution','B) To ensure the 3×3 kernel can be centered on every pixel of the actual 7×7 image without going out of bounds','C) To apply bilateral filtering at the borders','D) To allow the kernel to exceed the image boundary intentionally'],answer:'B',selected:null},
 
-  {id:9,text:'If a pixel has ΔX ≠ 0 and ΔY = 0, the detected edge at that pixel is oriented:',choices:['A) Horizontally — a gradient only in x means a horizontal edge','B) Vertically — a non-zero horizontal gradient detects a vertically oriented edge','C) Diagonally at 45°','D) Diagonally at 135°'],answer:'B',selected:null},
+{id:8,text:'During dilation, a pixel that was originally 0 becomes 1 in the output. What is the most likely reason?',choices:['A) The kernel performed an averaging operation','B) A neighboring foreground pixel was within the kernel reach, causing the output to be set to 1','C) All surrounding pixels were also 0','D) The padding replaced the pixel value'],answer:'B',selected:null},
 
-  {id:10,text:'Which of the following ΔX, ΔY pairs produces the strongest resultant gradient ΔG?',choices:['A) ΔX = 0, ΔY = 0 → ΔG = 0','B) ΔX = 1, ΔY = 1 → ΔG ≈ 1.41','C) ΔX = 3, ΔY = 4 → ΔG = 5','D) ΔX = 2, ΔY = 0 → ΔG = 2'],answer:'C',selected:null},
+{id:9,text:'In morphological edge detection, applying erosion to an image and then subtracting the result from the original produces:',choices:['A) A smoothed version of the image','B) The interior of all objects','C) The boundary pixels of the original foreground objects','D) A fully black image'],answer:'C',selected:null},
 
-  {id:11,text:'In the simulation convolution step panel, the running sum displayed for Kernel X after each multiplication represents:',choices:['A) The final ΔX value for the entire result matrix','B) The cumulative sum of element-wise products computed so far within the current window position','C) The kernel weight at the current sliding position','D) The original image pixel intensity at that location'],answer:'B',selected:null},
+{id:10,text:'If a larger kernel is used instead of a 3×3 kernel in erosion, what is expected?',choices:['A) The foreground objects shrink less','B) The foreground objects shrink more because more boundary pixels fail the fit condition','C) The image remains unchanged','D) The processing time decreases'],answer:'B',selected:null},
 
-  {id:12,text:'A student observes that the Prewitt result differs from the Sobel result on the same binary image. The key numerical difference in their kernels is:',choices:['A) Prewitt uses ±1 uniformly; Sobel doubles the centre row/column weights to ±2','B) Prewitt uses a 5×5 kernel; Sobel uses 3×3','C) Prewitt uses only positive weights; Sobel uses both positive and negative','D) Prewitt computes second-order derivatives, unlike Sobel'],answer:'A',selected:null},
+{id:11,text:'After applying Opening with a 3×3 kernel to isolated single-pixel white dots on a black background, what would you expect?',choices:['A) The single-pixel dots grow into 3×3 squares','B) The single-pixel dots are removed because they cannot survive the initial erosion step','C) The single-pixel dots remain unchanged','D) New dots appear where there were none'],answer:'B',selected:null},
 
-  {id:13,text:'After normalisation by ΔG / (MaxValue × 255), the pixel carrying the maximum gradient value in the result matrix appears in the resultant edge image as:',choices:['A) Black (normalised intensity ≈ 0)','B) Grey (normalised intensity ≈ 0.5)','C) White (normalised intensity = 1.0, maximum brightness)','D) Red (indicating maximum gradient direction)'],answer:'C',selected:null},
+{id:12,text:'If you apply dilation twice in succession to the same binary image, how would the result compare to a single dilation?',choices:['A) Double dilation produces the same result as a single dilation','B) Double dilation expands the foreground region further than a single dilation','C) Double dilation shrinks the image compared to single dilation','D) Double dilation removes all foreground pixels'],answer:'B',selected:null},
 
-  {id:14,text:'Why does the Sobel operator often provide smoother edges than Roberts?',choices:['A) It uses larger neighborhoods with weighted center pixels','B) It ignores vertical gradients','C) It avoids convolution','D) It uses thresholding only'],answer:'A',selected:null},
+{id:13,text:'In morphological operations, the term "Hit" in the simulation explanation refers to:',choices:['A) A collision between the kernel and the image boundary','B) A successful match condition that sets the output pixel to 1','C) An error in the processing pipeline','D) A case where the output pixel is set to 0'],answer:'B',selected:null},
 
-  {id:15,text:'Brighter pixels in the output image correspond to:',choices:['A) Weaker edges','B) Stronger intensity changes','C) Noise removal only','D) Uniform regions'],answer:'B',selected:null},
+{id:14,text:'Comparing dilation and erosion on the same binary image, which statement is always true?',choices:['A) The dilated image has fewer white pixels than the eroded image','B) The eroded image has more white pixels than the dilated image','C) The dilated image has an equal or greater number of white pixels compared to the eroded image','D) Both operations produce identical output images'],answer:'C',selected:null},
 
-  {id:16,text:'If only horizontal intensity changes are present, the magnitude contribution will mainly come from:',choices:['A) Kernel Y','B) Kernel X','C) Laplacian kernel','D) Threshold value'],answer:'B',selected:null},
+{id:15,text:'Which operation and kernel size would produce the most aggressive removal of fine details and thin structures?',choices:['A) Dilation with a 3×3 cross kernel','B) Erosion with a small 1×1 kernel','C) Erosion with a large 5×5 or 7×7 kernel','D) Closing with a 1×1 kernel'],answer:'C',selected:null},
 
-  {id:17,text:'Why does the Sobel operator often provide smoother edges than Roberts?',choices:['A) It uses larger neighborhoods with weighted center pixels','B) It ignores vertical gradients','C) It avoids convolution','D) It uses thresholding only'],answer:'A',selected:null}
+{id:16,text:'Which morphological operation would best restore the original size of objects after erosion has been applied to remove noise?',choices:['A) Applying another round of erosion','B) Applying dilation, completing the Opening sequence','C) Applying a Gaussian filter','D) Applying histogram equalization'],answer:'B',selected:null},
+
+{id:17,text:'A 3×3 kernel with all elements equal to 1 is called a:',choices:['A) Cross-shaped kernel','B) Diamond kernel','C) Square or rectangular kernel','D) Sparse kernel'],answer:'C',selected:null},
+
+{id:18,text:'Which application would most benefit from morphological closing?',choices:['A) Separating overlapping characters in a printed document','B) Filling cracks or small gaps in the outline of a scanned signature','C) Detecting isolated dust particles in a microscopy image','D) Thinning elongated objects'],answer:'B',selected:null},
+
+{id:19,text:'Which effect of erosion makes it useful for separating two objects that are barely touching each other?',choices:['A) It fills gaps between objects','B) It removes boundary pixels, which can break a thin connection between objects','C) It expands both objects uniformly','D) It inverts the pixel values'],answer:'B',selected:null},
+
+{id:20,text:'What does zero-padding around a binary image accomplish during morphological processing?',choices:['A) It increases the brightness of boundary pixels','B) It provides a border of background pixels so the kernel can be centered on every pixel, including edge pixels','C) It converts the image from binary to grayscale','D) It adds extra foreground pixels around the image'],answer:'B',selected:null},
+
 ];
 
 /* ------------------ SETTINGS ------------------ */
