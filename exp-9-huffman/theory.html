@@ -814,47 +814,59 @@ Huffman Coding for Lossless Image Compression</a>
 
 <div class="content">
 
-
-<style>
-.main-title{
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #222;
-    margin: 20px 0 30px 0;
-    letter-spacing: 1px;
-    line-height: 1.3;
-}
-
-@media (max-width: 768px){
-    .main-title{
-        font-size: 2.2rem;
-    }
-}
-</style>
-
-<div class="content">
-
     <h2>Introduction</h2>
 
     <p>
       Image compression is defined as the process of reducing the amount of data needed to represent a digital image. This is done by removing the redundant data. The objective of image compression is to decrease the number of bits required to store and transmit without any measurable loss of information.
-      Two types of digital image compression are:
+    </p>
+    <p> Based on the reconstruction quality, image compression techniques are broadly classified into two categories:</p>
+
+    <p><b>1. Lossless Compression:</b> Lossless compression reconstructs the original image exactly after decompression, ensuring that no information is lost during the compression process. It is suitable for applications where perfect reconstruction is required, such as medical imaging, scientific imaging, and document storage. Huffman Coding is one of the most widely used lossless compression techniques.</p>
+
+    <p><b>2. Lossy Compression:</b> Lossy compression achieves higher compression ratios by discarding visually insignificant information that has minimal impact on perceived image quality. Although the reconstructed image is not identical to the original image, it is often visually acceptable for human observation. JPEG is one of the most widely used lossy image compression standards and combines transform coding with entropy coding techniques, including Huffman Coding, to achieve efficient compression.</p>
+
+    
+
+    <h2>Huffman Coding</h2>
+
+    <p>
+      Huffman Coding is a lossless entropy-based data compression algorithm proposed by David A. Huffman for constructing minimum-redundancy prefix codes. It is one of the most widely used compression techniques for reducing the storage and transmission requirements of digital data without any loss of information. Unlike fixed-length coding schemes, Huffman Coding assigns variable-length binary codewords to symbols according to their frequency of occurrence. Frequently occurring symbols are assigned shorter codewords, whereas less frequent symbols are assigned longer codewords, thereby minimizing the average number of bits required to represent the source data and improving compression efficiency.
     </p>
 
-    <p><b>1. Lossless (or) Error – Free Compression:</b> Lossless compression reduces file size without losing any information, allowing the original data to be perfectly reconstructed.</p>
+    <p>
+     Huffman Coding produces an optimal prefix-free code, meaning that no codeword is the prefix of another codeword. This property ensures unique and unambiguous decoding of the compressed data. Owing to its simplicity, efficiency, and lossless nature, Huffman Coding is extensively employed in image compression standards such as JPEG, as well as file compression formats including ZIP, PNG, and PDF. It also serves as a fundamental entropy coding technique in various multimedia, communication, and data storage systems.
+    </p>
 
-    <p><b>2. Lossy Compression:</b> Lossy compression reduces file size by permanently removing less important data, resulting in some loss of quality.</p>
     <style>
     ol li::marker {font-weight: bold; }
     </style>
-    <h2>Need for Data Compression: </h2>
-        <ol style="font-size: 1.8rem;text-align: justify">
-          <li>If  data  can  be  effectively  compressed  wherever  possible,  significant  improvements  in data throughput can be achieved.</li>
-          <li>Compression  can  reduce  the  file  sizes  up  to 60-70% and hence many files can be combined into one compressed document which makes the sending easier. </li>
-          <li>It is needed because it helps to reduce the consumption of excessive resources such as hard disc space and transmission bandwidth.  </li>
-          <li>Compression can fit more data in small memory and thus it reduces the memory space required as well as the cost of managing data. </li>
-        </ol>
+    <h2>Need for Data Compression</h2>
+    <p>
+      Digital images require a significant amount of storage because each pixel contains intensity or color information. As image resolution increases, the amount of data required to store an image also increases. Furthermore, transmitting large image files over communication networks requires higher bandwidth and increases transmission time. These challenges make image compression an essential component of modern digital image processing and multimedia applications.
+    </p>
+    <p>
+      Image compression is the process of reducing the amount of data required to represent an image while maintaining an acceptable level of visual quality. The primary objectives of image compression are:
+    </p>
+        <ul style="font-size: 1.8rem;text-align: justify">
+          <li>Reduce the storage space required for digital images.</li>
+          <li>Minimize transmission bandwidth and communication costs.</li>
+          <li>Increase transmission speed over communication networks.</li>
+          <li>Improve storage efficiency in databases and cloud storage systems.</li>
+          <li>Preserve image quality while eliminating redundant information.</li>
+        </ul>
+
+    <h2>Working Principle of Huffman Coding</h2>
+    <p>Huffman Coding constructs an optimal binary prefix tree, known as the Huffman Tree, based on the frequency of occurrence of symbols. The complete encoding process is carried out through the following steps:</p>
+    <ol style="font-size: 1.8rem;text-align: justify">
+      <li>Calculate the frequency of occurrence of each symbol in the input data.</li>
+      <li>Represent each symbol as a leaf node associated with its corresponding frequency.</li>
+      <li>Select the two nodes having the lowest frequencies and combine them to form a new internal node whose frequency is equal to the sum of the selected nodes.</li>
+      <li>Repeat the merging process until only one node remains, which becomes the root of the Huffman Tree.</li>
+      <li>Assign binary values to the branches of the Huffman Tree, where the <b>left branch is assigned '0'</b> and the <b>right branch is assigned '1'</b>.</li>
+      <li>Generate the Huffman code for each symbol by tracing the path from the root node to the corresponding leaf node.</li>
+      <li>Replace each symbol in the original data with its corresponding Huffman code to obtain the compressed bit stream. Since Huffman Coding generates prefix-free codes, the encoded data can be decoded uniquely and without ambiguity.</li>
+    </ol>
+    <p>This variable-length coding scheme minimizes the average code length and improves compression efficiency. Owing to its efficiency and lossless nature, Huffman Coding is widely employed in image compression standards such as JPEG and in file compression applications.</p>
 
     <h2>Image Compression Model </h2>
     <p> 
@@ -889,7 +901,63 @@ Huffman Coding for Lossless Image Compression</a>
     </li>
      </ol>
 
+    <h2>Average Code Length</h2>
+    <p>The average code length represents the average number of bits required to encode one symbol and is given by:</p>
+    <p style="text-align:center;">L<sub>avg</sub> = Σ P(x<sub>i</sub>) L(x<sub>i</sub>)</p>
+    <p>where P(x<sub>i</sub>) is the probability of occurrence of symbol x<sub>i</sub>, and L(x<sub>i</sub>) is the length of the Huffman code assigned to that symbol. The objective of Huffman Coding is to minimize L<sub>avg</sub>, thereby improving compression efficiency.</p>
 
+
+    <h2>Compression Ratio</h2>
+    <p>The effectiveness of a compression algorithm is measured using the Compression Ratio (CR):</p>
+    <p style="text-align:center;">CR = Original Image Size / Compressed Image Size</p>
+    <p>Example: If the Original Image Size = 800 KB and Compressed Image Size = 200 KB, then CR = 800/200 = 4:1, meaning the compressed image occupies only one-fourth of the original storage space. A higher compression ratio indicates better compression performance.</p>
+
+    <h2>Time Complexity</h2>
+    <p>Assuming the input contains n symbols and k unique symbols, the time complexity of the Huffman Coding process is as follows:</p>
+    <table border="1" cellpadding="8" style="border-collapse:collapse; margin:20px auto; font-size:1.1rem;">
+      <tr><th>Operation</th><th>Time Complexity</th></tr>
+      <tr><td>Frequency Calculation</td><td>O(n)</td></tr>
+      <tr><td>Huffman Tree Construction (using Priority Queue)</td><td>O(k log k)</td></tr>
+      <tr><td>Encoding</td><td>O(n)</td></tr>
+      <tr><td>Decoding</td><td>O(n)</td></tr>
+    </table>
+    <p>Using a priority queue (min-heap) significantly improves the efficiency of Huffman tree construction by allowing the two least frequent nodes to be selected efficiently during each iteration.</p>
+
+     <h2>Worked Example: "ABEACADABEA"</h2>
+    <p>To demonstrate the working of Huffman Coding, consider the message "ABEACADABEA". First, the frequency of occurrence of each symbol is determined, as shown below:</p>
+
+    <center>
+      <img src="images/table1.png" style="max-width: 500px; width: 100%; height: auto;" />
+      <figcaption style="font-weight: bold;">Table 1: The frequencies and probabilities of the text "ABEACADABEA"</figcaption>
+    </center>
+
+    <p>Based on these frequencies, the two lowest-frequency symbols are repeatedly combined to construct the Huffman tree, assigning '0' to the left branch and '1' to the right branch, as shown in the figure below:</p>
+
+    <center>
+      <img src="images/figure1.png" style="max-width: 500px; width: 100%; height: auto;" />
+      <figcaption style="font-weight: bold;">Fig. 1 Huffman tree for the message "ABEACADABEA" showing 0 and 1 branch assignments</figcaption>
+    </center>
+
+    <p>According to the above Huffman tree, the obtained codeword for each symbol is shown below:</p>
+
+    <center>
+      <img src="images/table2.png" style="max-width: 500px; width: 100%; height: auto;" />
+      <figcaption style="font-weight: bold;">Table 2: Generated Huffman codes for each symbol</figcaption>
+    </center>
+
+    <p>The total number of bits required to encode "ABEACADABEA" using these codes is:</p>
+    <p style="text-align:center;">(5×1) + (2×3) + (1×4) + (1×4) + (2×2) = 23 bits</p>
+    <p>This shows that Huffman Coding effectively reduces the average number of bits needed to represent the original message, compared to 88 bits required using fixed 8-bit ASCII encoding for the same 11 characters — a saving of more than 25%.</p>
+
+    <h2>Properties of Huffman Coding</h2>
+    <ul style="font-size: 1.8rem;text-align: justify">
+      <li>It is a lossless compression technique; the original data can be reconstructed exactly after decompression.</li>
+      <li>It generates optimal prefix-free codes, ensuring unique and error-free decoding.</li>
+      <li>Frequently occurring symbols are assigned shorter binary codes, while infrequently occurring symbols are assigned longer binary codes.</li>
+      <li>It minimizes the average code length, thereby reducing coding redundancy.</li>
+      <li>It provides an optimal solution for symbol-by-symbol coding when symbol probabilities are known.</li>
+    </ul>
+   
     <h2>Conclusion</h2>
 
     <p>
