@@ -819,6 +819,10 @@
           }
         }
         syncProgressReportUI();
+        if (shouldEmbedProgress()) {
+          showEmbeddedProgressSection();
+          try { history.replaceState({}, '', '#progressreport'); } catch {}
+        }
         return;
       }
 
